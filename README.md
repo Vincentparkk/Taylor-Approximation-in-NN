@@ -1,0 +1,1 @@
+# Taylor-Approximation-in-NN
