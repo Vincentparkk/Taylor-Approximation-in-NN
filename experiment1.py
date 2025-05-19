@@ -118,7 +118,6 @@ def run_experiment():
             new_model = rebuild_model(cfg).to(device)
             transfer_conv_weights(model, new_model, cfg)
 
-            # 🔧 Fine-tune 새 모델
             optimizer = torch.optim.Adam(new_model.parameters(), lr=1e-4)
             train(new_model, train_loader, optimizer, criterion, device, epochs=2)
 
