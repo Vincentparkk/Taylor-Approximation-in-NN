@@ -24,7 +24,7 @@ class SmallCNN(nn.Module):
         x = F.relu(self.conv1(x))
         x = self.pool(F.relu(self.conv2(x)))
 
-        x = x.view(x.size(0), -1)  # 💡 자동 크기
+        x = x.view(x.size(0), -1)
         if x.size(1) != self._fc1_in_features:
             self._fc1_in_features = x.size(1)
             self.fc1 = nn.Linear(self._fc1_in_features, 100).to(x.device)
@@ -100,7 +100,7 @@ def run_experiment(prune_ratio=None):
 
     if prune_ratio:
         model = prune_smallcnn(model, prune_ratio)
-        model = train_model(model, epochs=3)  # fine-tune
+        model = train_model(model, epochs=3)
 
     acc = evaluate(model)
     with torch.cuda.device(0):
